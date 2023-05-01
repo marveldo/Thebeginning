@@ -1,0 +1,124 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<main class="settingsPage profile my-md">
+    <div class="container">
+      <div class="layout">
+        <div class="column column--1of3">
+          <div class="card text-center">
+            <div class="card__body dev">
+              
+              <img class="avatar avatar--xl dev__avatar" src="{{user_profile.profile_pic.url}}" />
+              <h2 class="dev__name">{{user_profile.user.username}}</h2>
+              <p class="dev__title">{{user_profile.bio}}</p>
+              <p class="dev__location">{{user_profile.location}}</p>
+              <ul class="dev__social">
+                <li>
+                  <a title="Github" href="#" target="_blank"><i class="im im-github"></i></a>
+                </li>
+                <li>
+                  <a title="Stackoverflow" href="#" target="_blank"><i class="im im-stackoverflow"></i></a>
+                </li>
+                <li>
+                  <a title="Twitter" href="#" target="_blank"><i class="im im-twitter"></i></a>
+                </li>
+                <li>
+                  <a title="LinkedIn" href="#" target="_blank"><i class="im im-linkedin"></i></a>
+                </li>
+                <li>
+                  <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
+                </li>
+              </ul>
+              {% if request.user.profile.id != user_profile.id %}
+              <a href="{% url 'sendmessage' user_profile.id %}" class="btn btn--sub btn--lg">Send Message </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="column column--2of3">
+          <div class="devInfo">
+            <h3 class="devInfo__title">About Me</h3>
+            <p class="devInfo__about">
+              {{user_profile.description}}
+            </p>
+          </div>
+          <div class="settings">
+            <h3 class="settings__title">Skills</h3>
+
+          </div>
+
+          <table class="settings__table">
+            {% for skill in topskills %}
+            <tr>
+              <td class="settings__tableInfo">
+                <h4>{{skill.name}}</h4>
+                <p>
+                  {{skill.description}}
+                </p>
+              </td>
+          
+            </tr>
+             {% endfor %}
+           
+          </table>
+          <h3 class="devInfo__subtitle">Other Skills</h3>
+          <div class="devInfo__otherSkills">
+            {%  for skill in otherskills  %}
+            <span class="tag tag--pill tag--sub tag--lg">
+              <small>{{skill.name}}</small>
+            </span>
+            {%  endfor  %}
+          
+       
+        
+           
+            
+          </div>
+          
+
+          <div class="settings">
+            <h3 class="settings__title">Projects</h3>
+          
+          </div>
+
+          <table class="settings__table">
+            {% for room in user_profile.room_set.all %}
+            <tr>
+              <td class="settings__thumbnail">
+                <a href="{% url 'room' room.id %}"><img src="{{room.featured_image.url}}" alt="Project Thumbnail" /></a>
+              </td>
+              <td class="settings__tableInfo">
+            
+                <a href="single-project.html">{{room.name}}</a>
+                <p>
+                  {{room.about}}
+                </p>
+              </td>
+             
+            </tr>
+            {% endfor %}
+
+      
+          
+          </table>
+          
+        
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

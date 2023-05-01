@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <meta name="robots" content="noindex" />
+    <meta name="description"
+      content="An open source social media platform and public forum for questions and discussions, built for developers." />
+    <!-- Mumble UI -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css'%}" />
+    <!-- Mumble UI -->
+    <link rel="stylesheet" href="{% static 'styles/app.css'%}" />
+  
+    <!-- Highlight.js Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/styles/default.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/styles/night-owl.min.css" />
+ 
+    <title>Document</title>
+</head>
+<body>
+    {% include 'navbar.html'%}
+
+    {% block content %}
+  
+   
+
+    {% endblock content %}
+
+    
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert--{{message.tags}}" >
+    <p class="alert__message">{{message}}</p>
+    <button class="alert__close">⨯</button>
+  </div>
+  {% endfor %}
+{% endif %}
+
+<script src = "{% static 'uikit/app.js '%}"></script>
+</body>
+</html>

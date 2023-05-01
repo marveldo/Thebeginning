@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+
+
+
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+            <br>
+
+            <form class="form" method="POST">
+             {% csrf_token %}
+               <p>do you want to delete {{skill}}</p>
+
+          
+                
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                <a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}" >Go back </a>
+            </form>
+            
+        </div>
+    </div>
+</main>
+{% endblock content %}
