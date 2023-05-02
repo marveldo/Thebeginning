@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-h(^==6w14e@l(f%p=9(x(b=rhbrm#rh4ow*t%egdgo7qq!5t2k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,24 +82,23 @@ WSGI_APPLICATION = 'TheBeginning.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-#DATABASES = {
- #   'default': {
-  #    'ENGINE': 'django.db.backends.postgresql',
-   #    'NAME': 'devsearch',
-    #   'USER':'marvelous',
-     #  'HOST': 'database-1.cqinuhlxeymb.eu-north-1.rds.amazonaws.com',
-      #  'PASSWORD':'winner174',
-       #'PORT':'5432',
-   #}
-#}
-
 DATABASES = {
-  'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-      'NAME': BASE_DIR / 'db.sqlite3',
-  }
+    'default': {
+      'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'devsearch',
+       'USER':'marvelous',
+       'HOST': 'database-1.cqinuhlxeymb.eu-north-1.rds.amazonaws.com',
+      'PASSWORD':'winner174',
+       'PORT':'5432',
+   }
 }
 
+#DATABASES = {
+  #'default': {
+    #   'ENGINE': 'django.db.backends.sqlite3',
+     # 'NAME': BASE_DIR / 'db.sqlite3',
+  #}
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -168,3 +167,7 @@ AWS_ACCESS_KEY_ID = 'AKIAYED7L3CRKMA3UZGJ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'thebeginning-bucket'
 AWS_S3_SIGNATURE_VERSION = 'v4'
+
+
+if os.getcwd() == '/app':
+    DEBUG = False
